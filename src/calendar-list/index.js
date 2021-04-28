@@ -282,7 +282,7 @@ class CalendarList extends Component {
     const {style, pastScrollRange, futureScrollRange, horizontal, showScrollIndicator, testID, onLayout} = this.props;
 
     return (
-      <View style={this.style.flatListContainer} onLayout={onLayout}>
+      <View style={this.style.flatListContainer}>
         <FlatList
           ref={c => (this.listView = c)}
           style={[this.style.container, style]}
@@ -296,7 +296,7 @@ class CalendarList extends Component {
           showsVerticalScrollIndicator={showScrollIndicator}
           showsHorizontalScrollIndicator={horizontal && showScrollIndicator}
           testID={testID}
-          onLayout={this.props.onLayout}
+          onLayout={onLayout}
           removeClippedSubviews={this.props.removeClippedSubviews}
           pagingEnabled={this.props.pagingEnabled}
           scrollEnabled={this.props.scrollEnabled}
@@ -306,6 +306,7 @@ class CalendarList extends Component {
           keyExtractor={this.props.keyExtractor}
           onEndReachedThreshold={this.props.onEndReachedThreshold}
           onEndReached={this.props.onEndReached}
+          onContentSizeChange={this.props.onContentSizeChange}
         />
         {this.renderStaticHeader()}
       </View>
