@@ -12,7 +12,7 @@ import Calendar from '../calendar';
 import CalendarListItem from './item';
 import CalendarHeader from '../calendar/header/index';
 
-const {width} = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 /**
  * @description: Calendar List component for both vertical and horizontal calendars
@@ -134,6 +134,10 @@ class CalendarList extends Component {
       newrows.push(val);
     }
     return {rows: newrows};
+  }
+
+  getNumToRender(screenSize, calendarSize) {
+    return Math.ceil(screenSize / calendarSize);
   }
 
   scrollToDay(d, offset, animated) {
@@ -307,6 +311,7 @@ class CalendarList extends Component {
           onEndReachedThreshold={this.props.onEndReachedThreshold}
           onEndReached={this.props.onEndReached}
           onContentSizeChange={this.props.onContentSizeChange}
+          initialNumToRender={this.props.horizontal ? this.getNumToRender(width, this.props.calendarWidth) : this.getNumToRender(height, this.props.calendarHeight)}
         />
         {this.renderStaticHeader()}
       </View>
